@@ -17,6 +17,10 @@ entities:
             value: close
           - dps_val: STOP
             value: stop
+          - dps_val: Lamp_ON
+            hidden: true
+          - dps_val: Lamp_OFF
+            hidden: true
       - id: 7
         name: action
         type: string
@@ -35,3 +39,163 @@ entities:
             value: closed
           - dps_val: Stopped
             value: stopped
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: string
+        mapping:
+          - dps_val: Lamp_ON
+            value: true
+          - dps_val: Lamp_OFF
+            value: false
+          - value_mirror: lamp_status
+      - id: 101
+        name: lamp_status
+        type: string
+        optional: true
+        mapping:
+          - dps_val: Lamp_ON
+            value: true
+          - dps_val: Lamp_OFF
+            value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+        optional: true
+      - id: 12
+        type: bitfield
+        name: description
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: motor_fault
+          - dps_val: 2
+            value: overload
+          - dps_val: 4
+            value: photo_beam
+          - dps_val: 8
+            value: low_power
+  - entity: sensor
+    name: Operation count
+    icon: "mdi:counter"
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        optional: true
+        class: total_increasing
+  - entity: switch
+    name: Close by photocell
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Obstacle detection closing
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Community mode
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Obstacle detection opening
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Light flashing
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Soft stop
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+        optional: true
+  - entity: number
+    name: Motor power
+    category: config
+    icon: "mdi:speedometer"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 10
+          max: 100
+        mapping:
+          - step: 10
+  - entity: number
+    name: Soft stop time
+    category: config
+    class: duration
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 1
+          max: 15
+  - entity: number
+    name: Obstacle force
+    category: config
+    icon: "mdi:arm-flex"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
+  - entity: sensor
+    name: Board version
+    category: diagnostic
+    icon: "mdi:chip"
+    dps:
+      - id: 118
+        type: string
+        name: sensor
+        optional: true
