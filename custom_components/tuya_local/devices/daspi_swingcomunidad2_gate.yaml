@@ -1,0 +1,37 @@
+name: Swing gate
+products:
+  - id: cc0pofoln5kvfmsu
+    manufacturer: DASPI
+    model: SWING Comunidad 2
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: OPEN
+            value: open
+          - dps_val: CLOSE
+            value: close
+          - dps_val: STOP
+            value: stop
+      - id: 7
+        name: action
+        type: string
+        mapping:
+          - dps_val: Opening
+            value: opening
+          - dps_val: Open_Softstop
+            value: opening
+          - dps_val: Closing
+            value: closing
+          - dps_val: Close_Softstop
+            value: closing
+          - dps_val: Full_Opened
+            value: opened
+          - dps_val: Full_Closed
+            value: closed
+          - dps_val: Stopped
+            value: stopped
